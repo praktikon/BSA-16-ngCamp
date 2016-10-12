@@ -40,10 +40,14 @@ class mainPageCheckinData {
 
     addDateToDisplay(day) {
         let vm = this;
-        return vm.getCheckins(day).then(addResponseAsDay(res));
+        return vm.getCheckins(day)
+        .then(function(res) {
+            vm.addResponseAsDay(res, day);
+        });
     }
 
-    addResponseAsDay(res) {
+    addResponseAsDay(res, day) {
+        let vm = this;
         let yearIndex = undefined;
         if(vm.years.length > 0) {
             vm.years.forEach(function(year) {
