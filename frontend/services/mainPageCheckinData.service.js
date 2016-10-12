@@ -40,62 +40,64 @@ class mainPageCheckinData {
 
     addDateToDisplay(day) {
         let vm = this;
-        return vm.getCheckins(day).then(function(res) {
-            let yearIndex = undefined;
-            if(vm.years.length > 0) {
-                vm.years.forEach(function(year) {
-                    if (year.year === day.year) {
-                        yearIndex = vm.years.indexOf(year);
-                     }
-                });
-            }
-            if (yearIndex === undefined ) {
-                let months = [];
+        return vm.getCheckins(day).then(addResponseAsDay(res));
+    }
+
+    addResponseAsDay(res) {
+        let yearIndex = undefined;
+        if(vm.years.length > 0) {
+            vm.years.forEach(function(year) {
+                if (year.year === day.year) {
+                    yearIndex = vm.years.indexOf(year);
+                    }
+            });
+        }
+        if (yearIndex === undefined ) {
+            let months = [];
+            let days = [];
+            days[day.date] = {
+                day: day,
+                checkins: res
+            };
+            months[day.month] = {
+                days: days
+            };
+            vm.years.push({
+                year: day.year,
+                months: months
+            });
+            vm.years.sort(function(a, b) {
+                return (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0);
+            });
+            vm.rootScp.$broadcast('addDate', day);
+        } else {
+            if (!vm.years[yearIndex].months[day.month]) {
                 let days = [];
                 days[day.date] = {
                     day: day,
                     checkins: res
                 };
-                months[day.month] = {
+                vm.years[yearIndex].months[day.month] = {
                     days: days
                 };
-                vm.years.push({
-                    year: day.year,
-                    months: months
-                });
-                vm.years.sort(function(a, b) {
-                    return (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0);
-                });
                 vm.rootScp.$broadcast('addDate', day);
-            } else {
-                if (!vm.years[yearIndex].months[day.month]) {
-                    let days = [];
-                    days[day.date] = {
+            } else  {
+                if(vm.years[yearIndex].months[day.month].days) {
+                    vm.years[yearIndex].months[day.month].days[day.date] = {
                         day: day,
                         checkins: res
                     };
-                    vm.years[yearIndex].months[day.month] = {
-                        days: days
+                    vm.rootScp.$broadcast('addDate', day);
+                } else {
+                    vm.years[yearIndex].months[day.month].days = [];
+                    vm.years[yearIndex].months[day.month].days[day.date] = {
+                        day: day,
+                        checkins: res
                     };
                     vm.rootScp.$broadcast('addDate', day);
-                } else  {
-                    if(vm.years[yearIndex].months[day.month].days) {
-                        vm.years[yearIndex].months[day.month].days[day.date] = {
-                            day: day,
-                            checkins: res
-                        };
-                        vm.rootScp.$broadcast('addDate', day);
-                    } else {
-                        vm.years[yearIndex].months[day.month].days = [];
-                        vm.years[yearIndex].months[day.month].days[day.date] = {
-                            day: day,
-                            checkins: res
-                        };
-                        vm.rootScp.$broadcast('addDate', day);
-                    }
                 }
             }
-        });
+        }
     }
 
     removeDate(day) {
