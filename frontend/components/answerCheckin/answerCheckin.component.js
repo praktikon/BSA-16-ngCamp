@@ -7,6 +7,7 @@ class AnswerComponentController {
         this.options = ['all', 'answered', 'unanswered'];
         this.selectedAnswer = '';
         this.checkins = [];
+        this.searchTerm = '';
     }
 
     $onInit() {
@@ -19,42 +20,33 @@ class AnswerComponentController {
                 res.forEach(function(checkin) {
                     vm.checkins.push(checkin);
                 });
-                console.log(res);
             }
         });
-        // if (window._injectedData.currentProject === undefined) {
-        //     self.rootRouter.navigateByUrl('/noProject');
-        // }
+        if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        }
     }
 
     goToAnswer(chcknId, answerToken) {
         let vm = this;
         let url = '/checkins/answer/' + chcknId + '/' + answerToken;
-        console.log(arguments);
         vm.location.url(url);
     }
 
-    filterAns(type, seach, question) {
-        let seachStr = new String(seach).toLowerCase();
-        let questionStr = question.toLowerCase();
-        let index = seach ? questionStr.indexOf(seachStr) : 0;
-        console.log(index);
-        console.log(questionStr);
-        console.log(seachStr);
+    filterIsAnswered(selectedAnswer, searchTerm) {
+        let term = new String(searchTerm).toLowerCase();
         return function(elem) {
-            if (index != -1) {
-                if (type == "unanswered" && elem.answer == 'noAnswer') {
-                    return true;
-                }
-                if (type == "answered" && elem.answer != 'noAnswer') {
-                    return true;
-                }
-                return false;
-            } else {
-                return false;
+            let question = new String(elem.question).toLocaleLowerCase();
+            let isInclude = question.includes(term);
+             if (selectedAnswer == 'all' && isInclude) {
+                return true;
+            } else if (selectedAnswer == 'answered' && isInclude) {
+                return (elem.answers.length) ? true: false;
+            } else if (selectedAnswer == 'unanswered' && isInclude) {
+                return (elem.answers.length) ? false: true;
             }
         };
-    }
+    };
 };
 
 AnswerComponentController.$inject = ['httpGeneral', '$location'];
