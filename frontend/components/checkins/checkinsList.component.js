@@ -40,7 +40,6 @@ class CheckinsListComponentController {
 
     turnOn(checkin) {
         let self = this;
-        // console.log(checkin);
         self.httpGeneral.sendRequest({
             type: "PUT",
             url: `api/checkins/${checkin._id}`,
