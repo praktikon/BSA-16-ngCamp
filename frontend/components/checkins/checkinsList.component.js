@@ -21,12 +21,12 @@ class CheckinsListComponentController {
             function(extUsers, callback) {
                 self.httpGeneral.sendRequest({
                     type: "GET",
-                    url: "api/checkins"
+                    // url: `api/checkins`
+                    url: `api/checkins/projectId/${window._injectedData.currentProject}`
+                    
                 }).then(function(res) {
                     for (let check in res) {
-                        if (res[check].project === window._injectedData.currentProject) {
-                            self.checkIns.push(res[check]);
-                        }
+                        self.checkIns.push(res[check]);
                     }
                     for (let i = 0; i < res.length; i++) {
                         if (!self.externalUsersData) self.userService.setUsersShortNames(res[i].participants);
