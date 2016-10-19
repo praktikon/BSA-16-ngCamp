@@ -60,24 +60,24 @@
                 clear both
 
         input[id="week-list"]:not(:checked) ~ .tab.all,
-        input[id="monday"]:not(:checked) ~ .tab.mo,
-        input[id="tuesday"]:not(:checked) ~ .tab.tu,
-        input[id="wednesday"]:not(:checked) ~ .tab.we,
-        input[id="thursday"]:not(:checked) ~ .tab.th,
-        input[id="friday"]:not(:checked) ~ .tab.fr,
-        input[id="saturday"]:not(:checked) ~ .tab.sa,
-        input[id="sunday"]:not(:checked) ~ .tab.su {
+        input[id="Monday"]:not(:checked) ~ .tab.mo,
+        input[id="Tuesday"]:not(:checked) ~ .tab.tu,
+        input[id="Wednesday"]:not(:checked) ~ .tab.we,
+        input[id="Thursday"]:not(:checked) ~ .tab.th,
+        input[id="Friday"]:not(:checked) ~ .tab.fr,
+        input[id="Saturday"]:not(:checked) ~ .tab.sa,
+        input[id="Sunday"]:not(:checked) ~ .tab.su {
             height: 2em;
         }
 
         input[id="week-list"]:checked ~ * label[for="week-list"],
-        input[id="monday"]:checked ~ * label[for="monday"],
-        input[id="tuesday"]:checked ~ * label[for="tuesday"],
-        input[id="wednesday"]:checked ~ * label[for="wednesday"],
-        input[id="thursday"]:checked ~ * label[for="thursday"],
-        input[id="friday"]:checked ~ * label[for="friday"],
-        input[id="saturday"]:checked ~ * label[for="saturday"],
-        input[id="sunday"]:checked ~ * label[for="sunday"] {
+        input[id="Monday"]:checked ~ * label[for="Monday"],
+        input[id="Tuesday"]:checked ~ * label[for="Tuesday"],
+        input[id="Wednesday"]:checked ~ * label[for="Wednesday"],
+        input[id="Thursday"]:checked ~ * label[for="Thursday"],
+        input[id="Friday"]:checked ~ * label[for="Friday"],
+        input[id="Saturday"]:checked ~ * label[for="Saturday"],
+        input[id="Sunday"]:checked ~ * label[for="Sunday"] {
             box-shadow 0 4px border-color;
             transform: translateY(-4px);
             margin-left: 15px;
@@ -86,13 +86,13 @@
 
         @media (min-width: 600px) {
             input[id="week-list"]:not(:checked) ~ .tab.all,
-            input[id="monday"]:not(:checked) ~ .tab.mo,
-            input[id="tuesday"]:not(:checked) ~ .tab.tu,
-            input[id="wednesday"]:not(:checked) ~ .tab.we,
-            input[id="thursday"]:not(:checked) ~ .tab.th,
-            input[id="friday"]:not(:checked) ~ .tab.fr,
-            input[id="saturday"]:not(:checked) ~ .tab.sa,
-            input[id="sunday"]:not(:checked) ~ .tab.su {
+            input[id="Monday"]:not(:checked) ~ .tab.mo,
+            input[id="Tuesday"]:not(:checked) ~ .tab.tu,
+            input[id="Wednesday"]:not(:checked) ~ .tab.we,
+            input[id="Thursday"]:not(:checked) ~ .tab.th,
+            input[id="Friday"]:not(:checked) ~ .tab.fr,
+            input[id="Saturday"]:not(:checked) ~ .tab.sa,
+            input[id="Sunday"]:not(:checked) ~ .tab.su {
                 position: absolute;
                 overflow: hidden;
                 clip: rect(0 0 0 0);
