@@ -21,6 +21,15 @@ CheckinRepository.prototype.getAnswersById = getAnswersById;
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
 CheckinRepository.prototype.getQuestionsByProject = getQuestionsByProject;
 CheckinRepository.prototype.getCheckinsByProjectAndUser = getCheckinsByProjectAndUser;
+CheckinRepository.prototype.getByProject = getByProject;
+
+function getByProject(id, callback) {
+    var query = Checkin.find({
+        project: id
+    })
+    .populate('participants');
+    query.exec(callback);
+}
 
 function getByIdWithParticipants(id, callback) {
     var query = Checkin.findOne({
