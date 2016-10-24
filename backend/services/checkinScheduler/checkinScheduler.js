@@ -6,7 +6,7 @@ var timeToCompare = require('./timeToCompare');
 var getToken = require('./generateToken');
 
 
-var test = schedule.scheduleJob('* * * * *', function () {
+var test = schedule.scheduleJob('07-20 * * *', function () {
     var dayAndTime = timeToCompare();
     scheduleCheckinsByFrequency(dayAndTime.dayOfWeekString, dayAndTime.time);
     

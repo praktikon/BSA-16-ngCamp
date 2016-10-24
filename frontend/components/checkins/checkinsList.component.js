@@ -6,6 +6,7 @@ class CheckinsListComponentController {
         this.checkIns = [];
         this.userService = userService;
         this.externalUsersData = [];
+        this.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     }
 
     $onInit() {

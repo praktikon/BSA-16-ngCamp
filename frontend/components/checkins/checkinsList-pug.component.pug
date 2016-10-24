@@ -8,175 +8,36 @@
         // ACCORDION
         .checkins-accordion
             input#week-list(type='radio', name='week', checked='')
-            input#monday(type='radio', name='week')
-            input#tuesday(type='radio', name='week')
-            input#wednesday(type='radio', name='week')
-            input#thursday(type='radio', name='week')
-            input#friday(type='radio', name='week')
-            input#saturday(type='radio', name='week')
-            input#sunday(type='radio', name='week')
+            input#Monday(type='radio', name='week')
+            input#Tuesday(type='radio', name='week')
+            input#Wednesday(type='radio', name='week')
+            input#Thursday(type='radio', name='week')
+            input#Friday(type='radio', name='week')
+            input#Saturday(type='radio', name='week')
+            input#Sunday(type='radio', name='week')
             ul.tabs
                 li
                     label(for='week-list') QQ
                 li
-                    label(for='monday') Mo
+                    label(for='Monday') Mo
                 li
-                    label(for='tuesday') Tu
+                    label(for='Tuesday') Tu
                 li
-                    label(for='wednesday') We
+                    label(for='Wednesday') We
                 li
-                    label(for='thursday') Th
+                    label(for='Thursday') Th
                 li
-                    label(for='friday') Fr
+                    label(for='Friday') Fr
                 li
-                    label(for='saturday') Sa
+                    label(for='Saturday') Sa
                 li
-                    label(for='sunday') Su
+                    label(for='Sunday') Su
             section.tab.all
                 label(for='week-list') Questions List
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns track by $index") 
-                    nav.content
-                        ul.header
-                            li
-                                .teste {{checkin.frequency}} at {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-                                //- span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
-
-
-            section.tab.mo
-                label(for='monday') Monday
+                checkin-List
+                
+            section.tab(ng-repeat='day in check.weekdays', ng-class="day.toLowerCase()")
+                label(for=day) {{day}}
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Monday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.tu
-                label(for='tuesday') Tuesday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Tuesday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.we
-                label(for='wednesday') Wednesday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Wednesday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.th
-                label(for='thursday') Thursday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Thursday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.fr
-                label(for='friday') Friday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Friday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.sa
-                label(for='saturday') Saturday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Saturday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
-            section.tab.su
-                label(for='sunday') Sunday
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
-                div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Sunday') ")
-                    nav.content
-                        ul.header
-                            li {{checkin.time}}
-                            li
-                                label.switch
-                                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
-                                    .slider.round
-                        ul.main
-                            li.question
-                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                            li.user-list
-                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
-                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
+                checkin-List

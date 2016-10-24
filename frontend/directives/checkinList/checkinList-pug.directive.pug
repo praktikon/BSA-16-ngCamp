@@ -1,0 +1,16 @@
+div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter(day) ")
+    nav.content
+        ul.header
+            li
+                .teste {{checkin.frequency}} at {{checkin.time}}
+            li
+                label.switch
+                    input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                    .slider.round
+        ul.main
+            li.question
+                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+            li.user-list
+                .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
