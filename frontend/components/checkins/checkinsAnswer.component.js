@@ -2,12 +2,13 @@
 
 class CheckinsAnswerController {
     constructor(httpGeneral, $location) {
-        this.httpGeneral = httpGeneral;
-        this.location = $location;
-        this.body = '';
-        this.question = '';
-        this.answerIndex;
-        this.token = '';
+        let vm = this;
+        vm.answerIndex;
+        vm.body = '';
+        vm.httpGeneral = httpGeneral;
+        vm.location = $location;
+        vm.question = '';
+        vm.token = '';
     }
 
     $routerOnActivate(next) {

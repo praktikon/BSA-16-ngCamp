@@ -2,17 +2,19 @@ import './checkinsInfoStyles.styl';
 
 class CheckinsInfoComponentController {
     constructor(httpGeneral, popupNotifications, userService, $location) {
-        this.httpGeneral = httpGeneral;
-        this.popupNotifications = popupNotifications;
-        this.location = $location;
-        this.checkin = null;
-        this.answers = [];
-        this.groupedAsnwers = {};
-        this.userService = userService;
-        this.iter = [];
-        this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        let vm = this;
+        vm.answers = [];
+        vm.checkin = null;
+        vm.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        vm.groupedAsnwers = {};
+        vm.httpGeneral = httpGeneral;
+        vm.iter = [];
+        vm.location = $location;
+        vm.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        vm.popupNotifications = popupNotifications;
+        vm.userService = userService;
     }
+    
     $routerOnActivate(next) {
         let vm = this;
         let async = require('async');

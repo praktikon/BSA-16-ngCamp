@@ -2,13 +2,9 @@ import './checkinsCreateStyles.styl';
 
 class CheckinsCreateComponentController {
     constructor(httpGeneral, popupNotifications, $window, $location) {
-        this.httpGeneral = httpGeneral;
-        this.popupNotifications = popupNotifications;
-        this.window = $window;
-        this.location = $location;
-        this.participants = [];
-        this.question = '';
-        this.frequency = [{
+        let vm = this;
+        vm.httpGeneral = httpGeneral;
+        vm.frequency = [{
             name: "<strong>All Days</strong>",
             msGroup: true
         }, {
@@ -59,8 +55,15 @@ class CheckinsCreateComponentController {
         }, {
             msGroup: false
         }];
-        this.selectedFrequency = '';
-        this.time = [{
+        vm.location = $location;
+        vm.outputTime;
+        vm.outputDays;
+        vm.popupNotifications = popupNotifications;
+        vm.participants = [];
+        vm.parties = [];
+        vm.question = '';
+        vm.selectedFrequency = '';
+        vm.time = [{
             name: "08:00"
         }, {
             name: "09:00"
@@ -85,10 +88,9 @@ class CheckinsCreateComponentController {
         }, {
             name: "19:00"
         }];
-        this.parties = [];
-        this.outputTime;
-        this.outputDays;
+        vm.window = $window;
     }
+
     $onInit() {
         let vm = this;
         vm.httpGeneral.sendRequest({

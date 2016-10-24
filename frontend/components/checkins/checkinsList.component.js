@@ -2,11 +2,12 @@ import './checkinsStyles.styl';
 
 class CheckinsListComponentController {
     constructor(httpGeneral, userService) {
-        this.httpGeneral = httpGeneral;
-        this.checkIns = [];
-        this.userService = userService;
-        this.externalUsersData = [];
-        this.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        let vm = this;
+        vm.checkIns = [];
+        vm.externalUsersData = [];
+        vm.httpGeneral = httpGeneral;
+        vm.userService = userService;
+        vm.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     }
 
     $onInit() {

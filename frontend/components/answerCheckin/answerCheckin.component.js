@@ -2,12 +2,13 @@ import "./answer.styl";
 
 class AnswerComponentController {
     constructor(httpGeneral, $location) {
-        this.httpGeneral = httpGeneral;
-        this.location = $location;
-        this.options = ['all', 'answered', 'unanswered'];
-        this.selectedAnswer = '';
-        this.checkins = [];
-        this.searchTerm = '';
+        let vm = this;
+        vm.checkins = [];
+        vm.httpGeneral = httpGeneral;
+        vm.location = $location;
+        vm.options = ['all', 'answered', 'unanswered'];
+        vm.selectedAnswer = '';
+        vm.searchTerm = '';
     }
 
     $onInit() {

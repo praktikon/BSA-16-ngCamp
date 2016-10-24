@@ -2,8 +2,9 @@
 
 class CheckinsComponentController {
     constructor(httpGeneral, $rootRouter) {
-        this.httpGeneral = httpGeneral;
-        this.rootRouter = $rootRouter;
+        let vm = this;
+        vm.httpGeneral = httpGeneral;
+        vm.rootRouter = $rootRouter;
     }
     $onInit() {
         let self = this;
