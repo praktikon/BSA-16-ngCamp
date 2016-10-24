@@ -1,3 +1,4 @@
+span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter(day) ")
     nav.content
         ul.header

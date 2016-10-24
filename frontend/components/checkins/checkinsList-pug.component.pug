@@ -34,10 +34,8 @@
                     label(for='Sunday') Su
             section.tab.all
                 label(for='week-list') Questions List
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
                 checkin-List
                 
             section.tab(ng-repeat='day in check.weekdays', ng-class="day.toLowerCase()")
                 label(for=day) {{day}}
-                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
                 checkin-List

@@ -2,12 +2,9 @@ import './checkinsCreateStyles.styl';
 
 class CheckinsEditComponentController {
     constructor(httpGeneral, $window, $location) {
-        this.httpGeneral = httpGeneral;
-        this.window = $window;
-        this.location = $location;
-        this.participants = [];
-        this.question = '';
-        this.frequency = [
+        let vm = this;
+        vm.checkin = null;
+        vm.frequency = [
             {name: "<strong>All Days</strong>", msGroup: true},
             {name: "<strong>Every Working Day</strong>", msGroup: true},
             {id: "mo", icon: "<img src='https://maxcdn.icons8.com/Color/PNG/48/Time_And_Date/monday-48.png'>", name: "Monday", maker: "Mo"},
@@ -22,8 +19,14 @@ class CheckinsEditComponentController {
             {msGroup: false},
             {msGroup: false}
         ];
-        this.selectedFrequency = '';
-        this.time = [
+        vm.httpGeneral = httpGeneral;
+        vm.location = $location;
+        vm.participants = [];
+        vm.parties = [];
+        vm.question = '';
+        vm.selectedTime = '';
+        vm.selectedFrequency = '';
+        vm.time = [
             {name: "08:00"},
             {name: "09:00"},
             {name: "10:00"},
@@ -37,11 +40,10 @@ class CheckinsEditComponentController {
             {name: "18:00"},
             {name: "19:00"}
         ];
-        this.selectedTime = '';
-        this.parties = [];
-        this.checkin = null;
+        vm.window = $window;
     }
-    $routerOnActivate(next){
+
+    $routerOnActivate(next) {
         let vm = this;
         vm.httpGeneral.sendRequest({
             type:"GET",
@@ -63,7 +65,7 @@ class CheckinsEditComponentController {
         });
     }
 
-    save(){
+    save() {
         let vm = this;
         vm.httpGeneral.sendRequest({
             type: "PUT",
@@ -78,7 +80,8 @@ class CheckinsEditComponentController {
             vm.location.path('/checkins');
         });
     }
-    toggleAll(){
+
+    toggleAll() {
         let vm = this;
         if (vm.parties.length == vm.participants.length){
             vm.parties = []; 
@@ -90,7 +93,7 @@ class CheckinsEditComponentController {
             });
         }
     }
-    toggleChekin(id){
+    toggleChekin(id) {
         let vm = this;
         let idx = vm.parties.indexOf(id);
         if (idx > -1) {
