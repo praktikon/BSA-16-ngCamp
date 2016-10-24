@@ -8,6 +8,7 @@ import {ckEditorDirective} from './ckeditor/ckeditor.directive.js';
 import {fileUploadDirective} from './fileUpload/fileUpload.directive.js';
 import {filesWrapperDirective} from './filesWrapper/filesWrapper.directive.js';
 import {commentsModalDirective} from './commentsModal/commentsModal.directive.js';
+import {checkinListDirective} from './checkinList/checkinList.directive.js';
 
 
 app.directive(timeIndicatorDirective.name, () => timeIndicatorDirective);
@@ -16,6 +17,7 @@ app.directive('resizable', angularResizableDirective);
 app.directive(ckEditorDirective.name, () => ckEditorDirective);
 app.directive(userListDirective.name, () => userListDirective);
 app.directive(fileUploadDirective.name, () => fileUploadDirective);
-app.directive(filesWrapperDirective.name, ()=> filesWrapperDirective);
-app.directive(commentsModalDirective.name,()=> commentsModalDirective);
+app.directive(filesWrapperDirective.name, () => filesWrapperDirective);
+app.directive(commentsModalDirective.name,() => commentsModalDirective);
+app.directive(checkinListDirective.name, () => checkinListDirective);
 
