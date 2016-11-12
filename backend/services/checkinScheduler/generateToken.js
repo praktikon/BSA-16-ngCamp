@@ -3,7 +3,6 @@ var tokens = require('./tokens').mySet;
 
 function getUniqueToken() {
     var token = randomToken(16);
-
     for (i = 0; i < 5; i++) {
         if (!tokens.has(token)) {
             tokens.add(token);

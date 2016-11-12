@@ -35,7 +35,7 @@
             section.tab.all
                 label(for='week-list') Questions List
                 checkin-List
-                
-            section.tab(ng-repeat='day in check.weekdays', ng-class="day.toLowerCase()")
+    
+            section.tab(ng-repeat='day in check.weekdays.days', ng-class="day.toLowerCase()")
                 label(for=day) {{day}}
                 checkin-List

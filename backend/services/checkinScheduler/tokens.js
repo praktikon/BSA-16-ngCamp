@@ -1,22 +1,27 @@
 ﻿var checkinRepository = require('../../repositories/checkinRepository');
 var mySet = new Set();
 
-
-function getTokens() {
-    if (mySet.length == 0) {
-        checkinRepository.getAnswersById(id, function (err, data) {
+function getTokens(id) {
+    if (mySet.size == 0) {
+        checkinRepository.getAnswersByCheckinId(id, function (err, data) {
             if (err) {
                 console.log(err)
             } else {
-                data.forEach(function (answer) {
-                    mySet.add(answer.token);
-                })
+                try {
+                    if (data.answers){
+                        data.answers.forEach(function (answer) {
+                            mySet.add(answer.token);
+                        });
+                     }
+                } catch (err) {
+                    console.log(err);
+                }
             }
         })
     }
 }
 
-function clearTokens(){
+function clearTokens() {
     mySet.clear();
 }
 

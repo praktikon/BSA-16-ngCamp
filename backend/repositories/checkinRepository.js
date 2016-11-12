@@ -11,13 +11,12 @@ function CheckinRepository() {
 
 CheckinRepository.prototype = new Repository();
 
-
 CheckinRepository.prototype.findCheckinsByFrequencyAndTime = findCheckinsByFrequencyAndTime;
 CheckinRepository.prototype.getAll = getAll;
 CheckinRepository.prototype.getByIdWithParticipants = getByIdWithParticipants;
 CheckinRepository.prototype.getByAnswerToken = getByAnswerToken;
 CheckinRepository.prototype.updateAnswerItem = updateAnswerItem;
-CheckinRepository.prototype.getAnswersById = getAnswersById;
+CheckinRepository.prototype.getAnswersByCheckinId = getAnswersByCheckinId;
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
 CheckinRepository.prototype.getQuestionsByProject = getQuestionsByProject;
 CheckinRepository.prototype.getCheckinsByProjectAndUser = getCheckinsByProjectAndUser;
@@ -130,10 +129,12 @@ function updateAnswerItem(checkinId, id, data, callback) {
     query.exec(callback);
 }
 
-function getAnswersById(id, callback) {
-    var query = Checkin.find({
+// backend/services/checkinScheduler/tekens.sj
+function getAnswersByCheckinId(id, callback) {
+    var query = Checkin.findOne({
         _id: id
     }, {
+        _id: 0,
         answers: 1
     })
     query.exec(callback);
