@@ -1,13 +1,18 @@
 import './checkinsStyles.styl';
 
 class CheckinsListComponentController {
-    constructor(httpGeneral, userService) {
+    constructor(httpGeneral, userService, checkinSvc) {
         let vm = this;
         vm.checkIns = [];
+        vm.chSvc = checkinSvc;
         vm.externalUsersData = [];
         vm.httpGeneral = httpGeneral;
         vm.userService = userService;
-        vm.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        vm.weekdays = {
+            get days() {
+                return vm.chSvc.weekdays;
+            }
+        };
     }
 
     $onInit() {
@@ -25,7 +30,6 @@ class CheckinsListComponentController {
                     type: "GET",
                     // url: `api/checkins`
                     url: `api/checkins/projectId/${window._injectedData.currentProject}`
-                    
                 }).then(function(res) {
                     for (let check in res) {
                         self.checkIns.push(res[check]);
@@ -42,15 +46,7 @@ class CheckinsListComponentController {
 
     turnOn(checkin) {
         let self = this;
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/checkins/${checkin._id}`,
-            body: {
-                isTurnedOn: checkin.isTurnedOn
-            }
-        }).then(function(res) {
-            console.log("Succesfull change status of checkin");
-        });
+        self.chSvc.turnOnCheckin(checkin);
     }
 
     checkinFilter(mday) {
@@ -61,7 +57,7 @@ class CheckinsListComponentController {
     }
 }
 
-CheckinsListComponentController.$inject = ['httpGeneral', 'UserService'];
+CheckinsListComponentController.$inject = ['httpGeneral', 'UserService', 'checkinSvc'];
 
 const checkinsListComponent = {
     controller: CheckinsListComponentController,

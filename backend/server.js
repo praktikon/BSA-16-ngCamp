@@ -7,7 +7,7 @@ var bodyParser = require('body-parser'),
     MongoStore = require('connect-mongo')(session),
     sessionSecret = require('./config/session').secret,
     mongoose = require('mongoose');
-auth = require('./middleware/auth'),
+    auth = require('./middleware/auth'),
     fileUpload = require('express-fileupload');
 
 var scheduler = require('./services/checkinScheduler/checkinScheduler');
